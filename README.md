@@ -16,7 +16,6 @@ For guidance on setting up and submitting this assignment, refer to the Marcy la
 After cloning your repository, make sure to run the following commands:
 
 ```sh
-npm i
 git checkout -b draft
 ```
 
