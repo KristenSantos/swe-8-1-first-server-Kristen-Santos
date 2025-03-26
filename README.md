@@ -6,7 +6,6 @@
 - [Part 1 - Setup](#part-1---setup)
 - [Part 2 - Writing the Server Application](#part-2---writing-the-server-application)
 - [Part 3 - Deploy](#part-3---deploy)
-- [Submit](#submit)
 
 ## Setup
 
@@ -41,7 +40,7 @@ You got this!
 
 **Setup Technical Requirements**
 
-- [ ] The repository has a `server` folder with an `index.js` file and a `package.json` file inside
+- [ ] The repository has a `server` folder with an `index.js` file and a `package.json` file inside (you will need to create this folder and these files!)
 - [ ] `package.json` has `express` installed as a dependency and `nodemon` as a dev dependency (use the `-D` flag when installing)
 - [ ] `package.json` has a `"start"` script that uses `node` to run the `index.js` file and a `"dev"` script that uses `nodemon` to run `index.js`.
 
@@ -102,8 +101,3 @@ As you build your server, visit http://localhost:8080 (or whatever port number y
 When you're done, push your code to github and [follow these steps to deploy using Render](https://github.com/The-Marcy-Lab-School/render-deployment-instructions). Then, add the deployed link to your GitHub About section. Click on the gear icon to set the Website url (if you are unable to modify the About section, simply add the link to the top of this README)
 
 ![](./images/deployed-github.png)
-
-## Submit
-
-Submit a link to your GitHub repository on Canvas.
-
