@@ -1,4 +1,6 @@
-# Assignment
+# Your First Server Application
+
+Deployment Link: 
 
 - [Setup](#setup)
 - [Starter Code](#starter-code)
@@ -58,7 +60,7 @@ You got this!
 
 **Deployment Technical Requirements**
 
-- [ ] The project is deployed using Render and the link is shared in the "About" section of the repository OR is listed at the top of this README.
+- [ ] The project is deployed using Render and the link is listed at the top of this README.
 
 ## Part 1 - Setup
 
@@ -98,6 +100,4 @@ As you build your server, visit http://localhost:8080 (or whatever port number y
 
 ## Part 3 - Deploy
 
-When you're done, push your code to github and [follow these steps to deploy using Render](https://github.com/The-Marcy-Lab-School/render-deployment-instructions). Then, add the deployed link to your GitHub About section. Click on the gear icon to set the Website url (if you are unable to modify the About section, simply add the link to the top of this README)
-
-![](./images/deployed-github.png)
+When you're done, push your code to github and [follow these steps to deploy using Render](https://marcylabschool.gitbook.io/marcy-lab-school-docs/how-tos/deploying-using-render). Then, add the deployed link to the top of this README.
