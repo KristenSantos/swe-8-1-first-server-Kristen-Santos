@@ -1,12 +1,12 @@
 # Assignment
 
 - [Setup](#setup)
-- [Testing Your Code](#testing-your-code)
-  - [Submitting On Time](#submitting-on-time)
-  - [playground.js](#playgroundjs)
-  - [npm test](#npm-test)
-- [Questions](#questions)
-  - [Question 1:](#question-1)
+- [Starter Code](#starter-code)
+- [Grading](#grading)
+- [Part 1 - Setup](#part-1---setup)
+- [Part 2 - Writing the Server Application](#part-2---writing-the-server-application)
+- [Part 3 - Deploy](#part-3---deploy)
+- [Submit](#submit)
 
 ## Setup
 
@@ -17,43 +17,93 @@ After cloning your repository, make sure to run the following commands:
 ```sh
 npm i
 git checkout -b draft
-npm t
 ```
 
-## Testing Your Code
+## Starter Code
 
-### npm test
+You will be given a blank repo for this one! You are building a server from scratch and will go through all the steps to set up a new Express project.
 
-Before submitting your code, make sure you got things right by running the provided automated tests.
+## Grading
 
-You can do this using the commands:
+Instead of automated tests, your grade on this assignment will be determined by the number of tasks you are able to complete. Tasks appear as a checkbox, like this:
 
-```sh
-npm test # run the automated tests
-npm run test:w # run the automated tests and rerun them each time you save a change
+- [ ] example of an incomplete task
+- [x] example of an completed task
+
+Feel free to mark these tasks as complete/incomplete as you go. Your instructor may modify your tasks as complete/incomplete when grading.
+
+This assignment has 13 tasks:
+- 3 setup tasks
+- 9 server application tasks
+- 1 deployment task
+
+You got this!
+
+**Setup Technical Requirements**
+
+- [ ] The repository has a `server` folder with an `index.js` file and a `package.json` file inside
+- [ ] `package.json` has `express` installed as a dependency and `nodemon` as a dev dependency (use the `-D` flag when installing)
+- [ ] `package.json` has a `"start"` script that uses `node` to run the `index.js` file and a `"dev"` script that uses `nodemon` to run `index.js`.
+
+**Server Application Technical Requirements**
+
+- [ ] In `index.js`, the `express()` function is used to create an `app` (the variable should be called `app` to adhere to best practices!)
+- [ ] There are 4 controller functions
+  - [ ] Two controllers send an HTML response (either raw HTML or an HTML file)
+  - [ ] Two controllers send a data response
+  - [ ] One of the controllers uses query parameters in some way (`req.query.parameterName`)
+- [ ] There are 4 GET endpoints
+  - [ ] Endpoints that provided data start with `/api` (ex: `/api/name` returns a name)
+  - [ ] Endpoints that provide HTML start with `/` (ex: `/about` returns the about HTML page)
+- [ ] The `app` listens on an available port (I recommend `8080`)
+
+**Deployment Technical Requirements**
+
+- [ ] The project is deployed using Render and the link is shared in the "About" section of the repository OR is listed at the top of this README.
+
+## Part 1 - Setup
+
+**Create your files:**
+* Create a `server` folder and `cd` into it.
+* Run `npm init -Y` to create a `package.json` file.
+* Create an `index.js` file in the `server` folder.
+
+**Configure package.json**
+* Run `npm i express` to install express
+* Run `npm i -D nodemon` to install Nodemon as a dev dependency
+* Modify the `package.json` file with the following `"scripts"`:
+
+```json
+"scripts": {
+  "dev": "nodemon index.js",
+  "start": "node index.js"
+},
 ```
 
-You will know that you have "completed" an assignment once you have passed 75% or more of the automated tests!
+While working on your server, use `npm run dev` to run the server and have it restart whenever you make changes.
 
-### How To Read Tests
+When deploying, you will use the `npm start` command to start the server using the normal `node` command.
 
-All tests are made up of `expect()` statements that must all be true in order for the test to pass.
 
-Remember, when reading tests ask yourself:
-* How is the test using my code? What inputs are being provided to my functions?
-* What is the test expecting my function to return?
-* Is the test expecting my function to produce any side effects (printing something to the console, modifying the passed-in array, etc...)?
+## Part 2 - Writing the Server Application
 
-### Submitting On Time
+Now it is time to write the server application! Refer to the [lecture notes](https://marcylabschool.gitbook.io/marcy-lab-school-docs/mod-8-backend/1-intro-to-express) to build your Express server application.
 
-You have to understand that "grades" don't exist at Marcy. We only need performance data in order to know how you're doing, and make sure the people who need help get it as quickly as they can. It's ok if you didn't finish by the deadline! Just show us what you have. We'll have office hours and reviews, and we want to know what you are all struggling with so we can use those meetings effectively. **This is not about grades, its about seeing what you know, and where we can help!**
+The server should have four GET endpoints:
+- two endpoints that serve HTML
+- two endpoints that serve raw data. One of those data endpoints must use query parameters. 
 
-### playground.js
+It is entirely up to *you* to decide the names of the endpoints your server makes available. However, the endpoints should satisfy the technical requirements.
 
-The most straightforward way to test your code is to test your code by hand as you work. Invoke your functions and use `console.log()` to print out the results. Then, `cd` into the `src/` directory and use the `node <file_name>` command to run your JavaScript files. 
+As you build your server, visit http://localhost:8080 (or whatever port number you chose) and test out your server!
 
-You can also create what's called a "playground" (or "sandbox") file where you import any code you need, and then mess around with that file. We've included one in the `src` directory so you can see it. Run that program using `node src/playground.js`.
+## Part 3 - Deploy
 
-## Questions
+When you're done, push your code to github and [follow these steps to deploy using Render](https://github.com/The-Marcy-Lab-School/render-deployment-instructions). Then, add the deployed link to your GitHub About section. Click on the gear icon to set the Website url (if you are unable to modify the About section, simply add the link to the top of this README)
 
-### Question 1:
+![](./images/deployed-github.png)
+
+## Submit
+
+Submit a link to your GitHub repository on Canvas.
+
