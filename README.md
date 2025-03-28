@@ -44,7 +44,7 @@ You got this!
 
 **Server Setup Requirements**
 
-- [ ] The repository has a `server` folder with an `index.js` file and a `package.json` file inside (you will need to create this folder and these files!)
+- [ ] The root of the repository has a `server` folder with an `index.js` file and a `package.json` file inside (you will need to create this folder and these files!)
 - [ ] `package.json` has `express` installed as a dependency
 - [ ] `package.json` has `nodemon` as a dev dependency (use the `-D` flag when installing)
 - [ ] `package.json` has a `"start"` script that uses `node` to run the `index.js` file and a `"dev"` script that uses `nodemon` to run `index.js`.
@@ -61,7 +61,7 @@ You got this!
 
 **Static Assets Requirements**
 
-- [ ] The repository contains a Vite + React application
+- [ ] The root of the repository contains a Vite + React application. The folder containing the project is a sibling of `server`
 - [ ] The `path` module and `__dirname` are used to generate an absolute path to the `dist/` folder of your React application
 - [ ] The `express.static()` middleware serves the static assets in the React application's `dist/` folder.
 
@@ -128,7 +128,9 @@ Restart your server and send requests to each of your API endpoints. Keep an eye
 
 Now that your server has API endpoints, let's create a website to show users how to use your API!
 
-1. Use Vite to create a React+JavaScript application. Remove the provided starter code and replace the `App` will the following (feel free to modify it):
+1. `cd` to the root of your repository.
+2. Run `npm create vite` to create a React+JavaScript application. This folder should be a sibling to `server`.
+3. Remove the provided starter code and replace the `App` will the following (feel free to modify it):
 
     ```js
     function App() {
@@ -151,11 +153,11 @@ Now that your server has API endpoints, let's create a website to show users how
     export default App
     ```
 
-2. Next, build static assets for this React application using `npm run build`.
+4. Next, run `npm run build` to build static assets for this React application.
 
-3. Back in the `server/index.js` file, use the `express.static()` middleware along with the `path` module and `__dirname` to serve the static assets for your frontend.
+5. Back in the `server/index.js` file, use the `express.static()` middleware along with the `path` module and `__dirname` to serve the static assets for your frontend. See the lecture notes for guidance.
 
-4. Test this out by running your server and visiting `http://localhost:8080`. You should see your static assets!
+6. Test this out by running your server and visiting `http://localhost:8080`. You should see your static assets!
 
 ## Part 5 — Deploy
 
