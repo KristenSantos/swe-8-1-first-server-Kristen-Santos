@@ -5,9 +5,11 @@ Deployment Link:
 - [Setup](#setup)
 - [Starter Code](#starter-code)
 - [Grading](#grading)
-- [Part 1 - Setup](#part-1---setup)
-- [Part 2 - Writing the Server Application](#part-2---writing-the-server-application)
-- [Part 3 - Deploy](#part-3---deploy)
+- [Part 1 — Server Setup](#part-1--server-setup)
+- [Part 2 — Creating API Endpoints](#part-2--creating-api-endpoints)
+- [Part 3 — Add A Route Logger Middleware](#part-3--add-a-route-logger-middleware)
+- [Part 4 — Serving Static Assets](#part-4--serving-static-assets)
+- [Part 5 — Deploy](#part-5--deploy)
 
 ## Setup
 
@@ -32,36 +34,42 @@ Instead of automated tests, your grade on this assignment will be determined by 
 
 Feel free to mark these tasks as complete/incomplete as you go. Your instructor may modify your tasks as complete/incomplete when grading.
 
-This assignment has 13 tasks:
-- 3 setup tasks
-- 9 server application tasks
+This assignment has 19 requirements:
+- 6 server setup requirements
+- 9 server API requirements
+- 3 static asset requirements
 - 1 deployment task
 
 You got this!
 
-**Setup Technical Requirements**
+**Server Setup Requirements**
 
 - [ ] The repository has a `server` folder with an `index.js` file and a `package.json` file inside (you will need to create this folder and these files!)
-- [ ] `package.json` has `express` installed as a dependency and `nodemon` as a dev dependency (use the `-D` flag when installing)
+- [ ] `package.json` has `express` installed as a dependency
+- [ ] `package.json` has `nodemon` as a dev dependency (use the `-D` flag when installing)
 - [ ] `package.json` has a `"start"` script that uses `node` to run the `index.js` file and a `"dev"` script that uses `nodemon` to run `index.js`.
-
-**Server Application Technical Requirements**
-
-- [ ] In `index.js`, the `express()` function is used to create an `app` (the variable should be called `app` to adhere to best practices!)
-- [ ] There are 4 controller functions
-  - [ ] Two controllers send an HTML response (either raw HTML or an HTML file)
-  - [ ] Two controllers send a data response
-  - [ ] One of the controllers uses query parameters in some way (`req.query.parameterName`)
-- [ ] There are 4 GET endpoints
-  - [ ] Endpoints that provided data start with `/api` (ex: `/api/name` returns a name)
-  - [ ] Endpoints that provide HTML start with `/` (ex: `/about` returns the about HTML page)
+- [ ] In `index.js`, the `express()` function is used to create an `app`
 - [ ] The `app` listens on an available port (I recommend `8080`)
+
+**Server API Requirements**
+
+- [ ] A `logRoutes` middleware controller prints the request method, url, and time of request for every request sent to the server, and then invokes the `next()` middleware in the chain.
+- [ ] The server has a `GET /api/joke` endpoint that responds with a joke of your choosing!
+- [ ] The server has a `GET /api/picture` endpoint that responds with the URL of a picture of your choosing (use a URL from the internet!)
+- [ ] The server has a `GET /api/rollDie` endpoint that responds with an array containing a random dice roll.
+- [ ] The `GET /api/rollDie` endpoint uses a `?quantity=` query parameter to specif the number of die rolls to be added to the `rolls` array.
+
+**Static Assets Requirements**
+
+- [ ] The repository contains a Vite + React application
+- [ ] The `path` module and `__dirname` are used to generate an absolute path to the `dist/` folder of your React application
+- [ ] The `express.static()` middleware serves the static assets in the React application's `dist/` folder.
 
 **Deployment Technical Requirements**
 
 - [ ] The project is deployed using Render and the link is listed at the top of this README.
 
-## Part 1 - Setup
+## Part 1 — Server Setup
 
 **Create your files:**
 * Create a `server` folder and `cd` into it.
@@ -84,19 +92,69 @@ While working on your server, use `npm run dev` to run the server and have it re
 
 When deploying, you will use the `npm start` command to start the server using the normal `node` command.
 
-
-## Part 2 - Writing the Server Application
+## Part 2 — Creating API Endpoints
 
 Now it is time to write the server application! Refer to the [lecture notes](https://marcylabschool.gitbook.io/marcy-lab-school-docs/mod-8-backend/1-intro-to-express) to build your Express server application.
 
-The server should have four GET endpoints:
-- two endpoints that serve HTML
-- two endpoints that serve raw data. One of those data endpoints must use query parameters. 
+Start by creating a `GET /api/picture` endpoint that responds with the URL of a picture of your choosing (use a URL from the internet!)
+- Response Structure: `{ src: "" }`
+- Example: `{ src: "https://static-cdn.jtvnw.net/jtv_user_pictures/meowntain-profile_banner-71b7a6d0d943dc9e-480.jpeg" }`
 
-It is entirely up to *you* to decide the names of the endpoints your server makes available. However, the endpoints should satisfy the technical requirements.
+Next, make a `GET /api/joke` endpoint that responds with a joke of your choosing!
+- Response Structure: `{ setup: "", punchline: ""}`
+- Example: `{ setup: "what do you call a pile of kittens?", punchline: "a meowntain" }`
 
-As you build your server, visit http://localhost:8080 (or whatever port number you chose) and test out your server!
 
-## Part 3 - Deploy
+Finally, add a `GET /api/rollDie` endpoint. It should be able to handle a `?quantity=` query parameter that lets the client specify the number of dice to roll (default to `1` and no negative values are allowed). 
+* It should always return an array containing the rolls.
+- Response Structure: `{ rolls: [] }`
+- Example: `{ rolls: [5, 2, 3] }`
 
-When you're done, push your code to github and [follow these steps to deploy using Render](https://marcylabschool.gitbook.io/marcy-lab-school-docs/how-tos/deploying-using-render). Then, add the deployed link to the top of this README.
+As you build your server, visit [http://localhost:8080](http://localhost:8080) (or whatever port number you chose) and test out your server's API endpoints!
+
+## Part 3 — Add A Route Logger Middleware
+
+In addition to the three GET endpoints, the server should have a `logRoutes` middleware that prints out information about every incoming request, regardless of the endpoint used.
+
+It should invoke `next()` to pass the request to the next controller in the chain.
+
+Feel free to use the logger in the lecture notes!
+
+Restart your server and send requests to each of your API endpoints. Keep an eye on your terminal and see the requests being logged!
+
+## Part 4 — Serving Static Assets
+
+Now that your server has API endpoints, let's create a website to show users how to use your API!
+
+1. Use Vite to create a React+JavaScript application. Remove the provided starter code and replace the `App` will the following (feel free to modify it):
+
+    ```js
+    function App() {
+
+      return (
+        <>
+          <main>
+            <h1>My First API</h1>
+            <p>Welcome to my first API! This is a simple API that returns a random joke, can roll dice for you, and can provide you with a nice picture. Enjoy!</p>
+            <ul>
+              <li>Visit <a href="/api/joke">/api/joke</a> for a funny joke</li>
+              <li>Visit <a href="/api/picture">/api/picture</a> to see a nice picture</li>
+              <li>Visit <a href="/api/rollDie">/api/rollDie</a> to roll a die. (Try <a href="/api/rollDie?quantity=3">/api/rollDie?quantity=3</a> to roll multiple dice!)</li>
+            </ul>
+          </main>
+        </>
+      )
+    }
+
+    export default App
+    ```
+
+2. Next, build static assets for this React application using `npm run build`.
+
+3. Back in the `server/index.js` file, use the `express.static()` middleware along with the `path` module and `__dirname` to serve the static assets for your frontend.
+
+4. Test this out by running your server and visiting `http://localhost:8080`. You should see your static assets!
+
+## Part 5 — Deploy
+
+When you're done, push your code to github and [follow these steps to deploy a static server using Render](https://marcylabschool.gitbook.io/marcy-lab-school-docs/how-tos/deploying-using-render#deploy-a-static-server-with-vite). Then, add the deployed link to the top of this README.
