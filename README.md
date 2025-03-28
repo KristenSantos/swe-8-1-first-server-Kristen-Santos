@@ -105,10 +105,12 @@ Next, make a `GET /api/joke` endpoint that responds with a joke of your choosing
 - Example: `{ setup: "what do you call a pile of kittens?", punchline: "a meowntain" }`
 
 
-Finally, add a `GET /api/rollDie` endpoint. It should be able to handle a `?quantity=` query parameter that lets the client specify the number of dice to roll (default to `1` and no negative values are allowed). 
-* It should always return an array containing the rolls.
+Finally, add a `GET /api/rollDie` endpoint. It should be able to handle a `?quantity=` query parameter that lets the client specify the number of dice to roll. If no value is provided, or an invalid value is provided, roll one die.
 - Response Structure: `{ rolls: [] }`
-- Example: `{ rolls: [5, 2, 3] }`
+- Examples
+  - With a query parameter `/api/rollDie?quantity=3`: `{ rolls: [5, 2, 3] }`
+  - No query parameter `/api/rollDie`: `{ rolls: [4] }`
+  - Invalid query parameter `/api/rollDie?quantity=foo` : `{ rolls: [2] }`
 
 As you build your server, visit [http://localhost:8080](http://localhost:8080) (or whatever port number you chose) and test out your server's API endpoints!
 
