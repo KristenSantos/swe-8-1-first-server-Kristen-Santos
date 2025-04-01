@@ -5,11 +5,11 @@ Deployment Link:
 - [Setup](#setup)
 - [Starter Code](#starter-code)
 - [Grading](#grading)
-- [Part 1 — Server Setup](#part-1--server-setup)
-- [Part 2 — Creating API Endpoints](#part-2--creating-api-endpoints)
-- [Part 3 — Add A Route Logger Middleware](#part-3--add-a-route-logger-middleware)
-- [Part 4 — Serving Static Assets](#part-4--serving-static-assets)
-- [Part 5 — Deploy](#part-5--deploy)
+- [Step 1 — Server Setup](#step-1--server-setup)
+- [Step 2 — Creating API Endpoints](#step-2--creating-api-endpoints)
+- [Step 3 — Add A Route Logger Middleware](#step-3--add-a-route-logger-middleware)
+- [Step 4 — Serving Static Assets](#step-4--serving-static-assets)
+- [Step 5 — Deploy](#step-5--deploy)
 
 ## Setup
 
@@ -69,7 +69,9 @@ You got this!
 
 - [ ] The project is deployed using Render and the link is listed at the top of this README.
 
-## Part 1 — Server Setup
+## Step 1 — Server Setup
+
+> ✅ You will know that you've completed this step when you can run `npm run dev` and `npm run start` to execute your `index.js` file.
 
 **Create your files:**
 * Create a `server` folder and `cd` into it.
@@ -92,29 +94,37 @@ While working on your server, use `npm run dev` to run the server and have it re
 
 When deploying, you will use the `npm start` command to start the server using the normal `node` command.
 
-## Part 2 — Creating API Endpoints
+## Step 2 — Creating API Endpoints
+
+> ✅ You will know that you've completed this step when you can run your server at [http://localhost:8080](http://localhost:8080) and send requests to each of your endpoints (e.g. [http://localhost:8080/api/joke](http://localhost:8080/api/joke)).
 
 Now it is time to write the server application! Refer to the [lecture notes](https://marcylabschool.gitbook.io/marcy-lab-school-docs/mod-8-backend/1-intro-to-express) to build your Express server application.
 
-Start by creating a `GET /api/picture` endpoint that responds with the URL of a picture of your choosing (use a URL from the internet!)
-- Response Structure: `{ src: "" }`
-- Example: `{ src: "https://static-cdn.jtvnw.net/jtv_user_pictures/meowntain-profile_banner-71b7a6d0d943dc9e-480.jpeg" }`
+In total, your application will have 3 endpoints:
 
-Next, make a `GET /api/joke` endpoint that responds with a joke of your choosing!
-- Response Structure: `{ setup: "", punchline: ""}`
-- Example: `{ setup: "what do you call a pile of kittens?", punchline: "a meowntain" }`
+1. Create a `GET /api/picture` endpoint that responds with the URL of a picture of your choosing (use a URL from the internet!)
+    - Request URL: [http://localhost:8080/api/picture](http://localhost:8080/api/picture)
+    - Response Structure: `{ src: "" }`
+    - Example Response: `{ src: "https://static-cdn.jtvnw.net/jtv_user_pictures/meowntain-profile_banner-71b7a6d0d943dc9e-480.jpeg" }`
 
+2. Create a `GET /api/joke` endpoint that responds with a joke of your choosing!
+    - Request URL: [http://localhost:8080/api/joke](http://localhost:8080/api/joke)
+    - Response Structure: `{ setup: "", punchline: ""}`
+    - Example Response: `{ setup: "what do you call a pile of kittens?", punchline: "a meowntain" }`
 
-Finally, add a `GET /api/rollDie` endpoint. It should be able to handle a `?quantity=` query parameter that lets the client specify the number of dice to roll. If no value is provided, or an invalid value is provided, roll one die.
-- Response Structure: `{ rolls: [] }`
-- Examples
-  - With a query parameter `/api/rollDie?quantity=3`: `{ rolls: [5, 2, 3] }`
-  - No query parameter `/api/rollDie`: `{ rolls: [4] }`
-  - Invalid query parameter `/api/rollDie?quantity=foo` : `{ rolls: [2] }`
+3. Create a `GET /api/rollDie` endpoint. It should be able to handle a `?quantity=` query parameter that lets the client specify the number of dice to roll. If no value is provided, or an invalid value is provided, roll one die.
+    - Request URL: [http://localhost:8080/api/rollDie](http://localhost:8080/api/rollDie)
+    - Response Structure: `{ rolls: [] }`
+    - Example Responses
+      - With a query parameter `/api/rollDie?quantity=3`: `{ rolls: [5, 2, 3] }`
+      - No query parameter `/api/rollDie`: `{ rolls: [4] }`
+      - Invalid query parameter `/api/rollDie?quantity=foo` : `{ rolls: [2] }`
 
 As you build your server, visit [http://localhost:8080](http://localhost:8080) (or whatever port number you chose) and test out your server's API endpoints!
 
-## Part 3 — Add A Route Logger Middleware
+## Step 3 — Add A Route Logger Middleware
+
+> ✅ You will know that you've completed this step when information about every request that your server receives is printed to the console of your server's terminal.
 
 In addition to the three GET endpoints, the server should have a `logRoutes` middleware that prints out information about every incoming request, regardless of the endpoint used.
 
@@ -124,7 +134,9 @@ Feel free to use the logger in the lecture notes!
 
 Restart your server and send requests to each of your API endpoints. Keep an eye on your terminal and see the requests being logged!
 
-## Part 4 — Serving Static Assets
+## Step 4 — Serving Static Assets
+
+> ✅ You will know that you've completed this step when you visit your server at [http://localhost:8080](http://localhost:8080) and you are presented with a frontend webpage.
 
 Now that your server has API endpoints, let's create a website to show users how to use your API!
 
@@ -159,6 +171,8 @@ Now that your server has API endpoints, let's create a website to show users how
 
 6. Test this out by running your server and visiting `http://localhost:8080`. You should see your static assets!
 
-## Part 5 — Deploy
+## Step 5 — Deploy
+
+> ✅ You will know that you've completed this step when you can visit your deployed server!
 
 When you're done, push your code to github and [follow these steps to deploy a static server using Render](https://marcylabschool.gitbook.io/marcy-lab-school-docs/how-tos/deploying-using-render#deploy-a-static-server-with-vite). Then, add the deployed link to the top of this README.
