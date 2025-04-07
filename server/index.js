@@ -6,8 +6,7 @@ const path = require("path");
 
 const filepath = path.join(__dirname, "../vite-project/dist");
 
-// Best Practice: Add error handling for static files
-// Consider checking if directory exists before serving static files
+
 const serveStatic = express.static(filepath);
 
 // Best Practice: Middleware for logging
